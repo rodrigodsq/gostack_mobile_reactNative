@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file -->
 
 # -----------------------------------------INTERFACE-------------------------------------------
 
@@ -13,7 +14,7 @@
 
 * <SafeAreaView>    :   define uma area segura, p os components filhos serem exibidos apenas na area visivel da aplicação;
 
-* <TouchableOpacity>    :   Botão;
+* <TouchableOpacity>    :   Botão, com um leve efeito de clique;
 
 # ------ estilos dos atributos de interface---------
 
@@ -41,6 +42,7 @@
 
  * executar    :    npx react-native run-android
  * executar    :    yarn android
+ * apos atualizar o app, tive que abrir dois terminais, no primeiro rodar o RN com o comando `yarn start` e no segundo executar yarn android
 
  * iniciando um projeto com typescript  :   npx react-native init appgobarber --template react-native-template-typescript
 
@@ -108,8 +110,49 @@
 * yarn add @react-native-community/async-storage    :   `dependencia que funciona como o localstorage`;
 
 
+# ---------------------------------------CORRIGINDO BUGS--------------------------------
 
-
-# -----------------------------------------------------------------------
-
+**PARA START O APP**
+WINDOWS
 * cd android && ./gradlew clean && cd .. && npx react-native run-android    :   `o app abria e ja fechava direto, nem carregava o metro bundle`
+
+LINUX
+* correção do problema ao executar o app no linux:
+  - Quando eu corri cd android && ./gradlew clean, estava recebendo erros de permissão também.
+    corri chmod +x gradlew e começou a funcionar
+    LINK: https://stackoverflow.com/questions/56891033/facing-issue-failed-to-install-the-app-make-sure-you-have-the-android-develop
+
+    Para executar:
+    1° terminal: react-native start
+    2° terminal: npx react-native run-android
+
+**BUG DA FLATLIST COM STYLED-COMPONENT**
+https://stackoverflow.com/questions/71035729/react-native-flatlist-styled-components-and-typescript
+
+**Erro ocorrido ao instalar o react-native-image-picker**
+- solução foi instalar essa versão especifica: react-native-image-picker": "2.3.1",
+
+**Erro de permissão de camera/galeria**
+- erro: permissions weren't granted
+- Solução foi add as permissões necessárias dentro de android/app/src/main/AndroidManifest.xml
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-feature android:name="android.hardware.camera" />
+- Link: https://stackoverflow.com/questions/62469572/react-native-image-picker-doesnt-open-camera
+
+
+# ----------------------------------------------------------
+
+* para quebrar linha no RN diretamento no tsx(html) utilizamos: {"\n"}
+
+* import { useNavigation } from '@react-navigation/native';
+  Ferramenta para navegação entre telas no RN;
+
+* margin-left: auto;  ao utilizar o auto em um margin, ele coloca o maximo de espaço disponivel;
+
+* arquivo ./app.tsx:
+  - translucent: para entender que a statusbar não conta como tamanho do conteudo, e padding top ficar ok ao usar o getStatusBarHeight nos styles;
+
+* sempre que um useState é alterado ocorre uma nova renderização do component (isso pode interferir na performance do app);
+
+* na maioria das vezes que instalar um nova lib no mac, devemos entrar n pasta ios e executar o comando `pod install`;

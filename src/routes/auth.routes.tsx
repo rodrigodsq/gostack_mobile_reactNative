@@ -3,7 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import SignIn from '../pages/Signin';
 import SignUp from '../pages/SignUp';
-import Calendar from '../pages/Calendar';
 
 const Auth = createStackNavigator();
 
@@ -21,7 +20,6 @@ const AuthRoutes: React.FC = () => (
   >
     <Auth.Screen name="SignIn" component={SignIn} />
     <Auth.Screen name="SignUp" component={SignUp} />
-    <Auth.Screen name="Calendar" component={Calendar} />
   </Auth.Navigator>
 );
 

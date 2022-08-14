@@ -1,32 +1,31 @@
+import { useNavigation } from '@react-navigation/native';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/mobile';
 import React, { useCallback, useRef } from 'react';
 import {
+  Alert,
   Image,
-  View,
-  ScrollView,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   TextInput,
-  Alert,
+  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
-import { Form } from '@unform/mobile';
-import { FormHandles } from '@unform/core';
-
-import Input from '../../components/input';
-import Button from '../../components/button';
 import logoImg from '../../assets/logo.png';
+import Button from '../../components/button';
+import Input from '../../components/input';
+import { useAuth } from '../../hooks/auth';
+import getValidationErrors from '../../utils/getValidationsErrors';
 import {
   Container,
-  Title,
-  ForgotPassword,
-  ForgotPasswordText,
   CreateAccountButton,
   CreateAccountButtonText,
+  ForgotPassword,
+  ForgotPasswordText,
+  Title,
 } from './styles';
-import getValidationErrors from '../../utils/getValidationsErrors';
-import { useAuth } from '../../hooks/auth';
 
 interface SignInFormData {
   email: string;
